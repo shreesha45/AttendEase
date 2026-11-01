@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">AttendEase</h2>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="add-subject.html">Add Subject</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="dashboard-header">
+            <div>
+                <h1>Attendance Dashboard</h1>
+                <p>Monitor your academic attendance.</p>
+            </div>
+
+            <a href="add-subject.html" class="btn btn-primary">
+                + Add Subject
+            </a>
+        </section>
+
+        <section class="statistics-section">
+
+            <article class="stat-card">
+                <h3>Overall Attendance</h3>
+                <p id="overallAttendance">0%</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>Average Attendance</h3>
+                <p id="averageAttendance">0%</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>Safe Subjects</h3>
+                <p id="safeSubjects">0</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>At-Risk Subjects</h3>
+                <p id="atRiskSubjects">0</p>
+            </article>
+
+        </section>
+
+        <section class="subjects-section">
+
+            <div class="section-heading">
+                <h2>My Subjects</h2>
+            </div>
+
+            <div class="subject-filter">
+                <input
+                    type="search"
+                    id="searchSubject"
+                    placeholder="Search subjects..."
+                >
+
+                <select id="filterSubject">
+                    <option value="all">All Subjects</option>
+                    <option value="safe">Safe</option>
+                    <option value="warning">Warning</option>
+                    <option value="danger">Below Requirement</option>
+                </select>
+            </div>
+
+            <div id="subjectsContainer" class="subjects-container">
+
+                <!-- JavaScript will display subject cards here -->
+
+            </div>
+
+            <template id="subjectCardTemplate">
+                <article class="subject-card">
+
+                    <div class="subject-card-header">
+                        <h3 class="subject-name">Subject Name</h3>
+                        <span class="attendance-status">Safe</span>
+                    </div>
+
+                    <div class="attendance-info">
+                        <p>
+                            Attendance:
+                            <strong class="attendance-percentage">0%</strong>
+                        </p>
+
+                        <p>
+                            Safe Leaves:
+                            <strong class="safe-leaves">0</strong>
+                        </p>
+
+                        <p>
+                            Attended:
+                            <span class="attended-count">0</span>
+                        </p>
+
+                        <p>
+                            Total Classes:
+                            <span class="total-count">0</span>
+                        </p>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-actions">
+                        <button type="button" class="btn btn-success attend-btn">
+                            Attend Class (+)
+                        </button>
+
+                        <button type="button" class="btn btn-danger miss-btn">
+                            Miss Class (+)
+                        </button>
+                    </div>
+
+                    <div class="subject-actions">
+                        <a href="subject-details.html" class="details-btn">
+                            View Details
+                        </a>
+
+                        <a href="edit-subject.html" class="edit-btn">
+                            Edit
+                        </a>
+
+                        <button type="button" class="delete-btn">
+                            Delete
+                        </button>
+                    </div>
+
+                </article>
+            </template>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 AttendEase. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../js/attendance.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/ui.js"></script>
+    <!-- Delete Confirmation Dialog -->
+
+<dialog id="deleteConfirmDialog">
+
+    <h2>Delete Subject?</h2>
+
+    <p>Are you sure you want to delete this subject?</p>
+
+    <div class="dialog-actions">
+        <button type="button" id="confirmDeleteBtn">
+            Yes, Delete
+        </button>
+
+        <button type="button" id="cancelDeleteBtn">
+            Cancel
+        </button>
+    </div>
+
+</dialog>
+
+<!-- Toast Notification -->
+
+<div id="toastNotification" class="toast" role="status"
+     aria-live="polite">
+
+    <p id="toastMessage"></p>
+
+</div>
+
+</body>
+</html>

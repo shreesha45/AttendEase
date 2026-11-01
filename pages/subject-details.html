@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Details</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">AttendEase</h2>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="add-subject.html">Add Subject</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="details-container">
+
+        <section class="details-header">
+            <h1 id="detailSubjectName">Subject Name</h1>
+            <span id="detailAttendanceStatus" class="attendance-status">
+                Safe
+            </span>
+        </section>
+
+        <section class="attendance-overview">
+
+            <article class="detail-card">
+                <h3>Current Attendance</h3>
+                <p id="detailAttendancePercentage">0%</p>
+            </article>
+
+            <article class="detail-card">
+                <h3>Classes Attended</h3>
+                <p id="detailAttendedClasses">0</p>
+            </article>
+
+            <article class="detail-card">
+                <h3>Total Classes</h3>
+                <p id="detailTotalClasses">0</p>
+            </article>
+
+            <article class="detail-card">
+                <h3>Required Attendance</h3>
+                <p id="detailRequiredAttendance">75%</p>
+            </article>
+
+        </section>
+
+        <section class="safe-leave-section">
+
+            <h2>Safe Leave Calculator</h2>
+
+            <div class="safe-leave-card">
+
+                <h3>Maximum Safe Leaves</h3>
+                <p id="detailSafeLeaves">0 Classes</p>
+
+                <h3>Remaining Classes</h3>
+                <p id="detailRemainingClasses">0 Classes</p>
+
+                <h3>Classes Needed to Reach Requirement</h3>
+                <p id="detailClassesNeeded">0 Classes</p>
+
+            </div>
+
+        </section>
+
+        <section class="future-attendance-section">
+
+            <h2>Future Attendance Prediction</h2>
+
+            <div class="prediction-card">
+                <p>Classes Per Week:
+                    <strong id="detailClassesPerWeek">0</strong>
+                </p>
+
+                <p>Weeks Remaining:
+                    <strong id="detailWeeksRemaining">0</strong>
+                </p>
+
+                <p>Total Upcoming Classes:
+                    <strong id="detailUpcomingClasses">0</strong>
+                </p>
+
+                <p>Predicted Attendance:
+                    <strong id="detailFutureAttendance">0%</strong>
+                </p>
+            </div>
+
+        </section>
+
+        <section class="attendance-simulator">
+
+            <h2>Attendance Simulator</h2>
+
+            <p>Update your attendance for the next class.</p>
+
+            <div class="simulator-actions">
+
+                <button
+                    type="button"
+                    id="detailAttendBtn"
+                    class="btn btn-success">
+                    Attend Class (+)
+                </button>
+
+                <button
+                    type="button"
+                    id="detailMissBtn"
+                    class="btn btn-danger">
+                    Miss Class (+)
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="details-actions">
+
+            <a href="edit-subject.html" class="btn btn-primary">
+                Edit Subject
+            </a>
+
+            <a href="dashboard.html" class="btn btn-secondary">
+                Back to Dashboard
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 AttendEase. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../js/attendance.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/ui.js"></script>
+
+</body>
+</html>
