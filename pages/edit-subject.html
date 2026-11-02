@@ -1,95 +1,167 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Subject</title>
+
+    <title>AttendEase | Edit Subject</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
+
 <body>
 
+    <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-            <h2 class="logo">AttendEase</h2>
+
+            <div class="logo">AttendEase</div>
 
             <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="add-subject.html">Add Subject</a></li>
+                <li>
+                    <a href="../index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="subjects.html">Subjects</a>
+                </li>
             </ul>
+
         </nav>
     </header>
 
+
+    <!-- Main Content -->
     <main class="form-page">
 
         <section class="form-container">
 
-            <h1>Edit Subject</h1>
-            <p>Update your subject information.</p>
+            <div class="page-header">
+                <h1>Edit Subject</h1>
+                <p>Update your subject information and attendance details.</p>
+            </div>
 
+
+            <!-- Edit Subject Form -->
             <form id="editSubjectForm">
 
-                <input type="hidden" id="editSubjectId" name="subjectId">
+                <!-- Hidden Subject ID -->
+                <input
+                    type="hidden"
+                    id="editSubjectId"
+                    name="subjectId"
+                >
 
+
+                <!-- Subject Name -->
                 <div class="form-group">
-                    <label for="editSubjectName">Subject Name</label>
+
+                    <label for="editSubjectName">
+                        Subject Name
+                    </label>
+
                     <input
                         type="text"
                         id="editSubjectName"
                         name="subjectName"
+                        placeholder="Enter subject name"
                         required
                     >
+
                 </div>
 
+
+                <!-- Total Classes -->
                 <div class="form-group">
-                    <label for="editTotalClasses">Total Classes Conducted</label>
+
+                    <label for="editTotalClasses">
+                        Total Classes Conducted
+                    </label>
+
                     <input
                         type="number"
                         id="editTotalClasses"
                         name="totalClasses"
                         min="0"
+                        step="1"
+                        placeholder="Enter total classes"
                         required
                     >
+
                 </div>
 
+
+                <!-- Attended Classes -->
                 <div class="form-group">
-                    <label for="editAttendedClasses">Classes Attended</label>
+
+                    <label for="editAttendedClasses">
+                        Classes Attended
+                    </label>
+
                     <input
                         type="number"
                         id="editAttendedClasses"
                         name="attendedClasses"
                         min="0"
+                        step="1"
+                        placeholder="Enter attended classes"
                         required
                     >
+
                 </div>
 
+
+                <!-- Classes Per Week -->
                 <div class="form-group">
-                    <label for="editClassesPerWeek">Classes Per Week</label>
+
+                    <label for="editClassesPerWeek">
+                        Classes Per Week
+                    </label>
+
                     <input
                         type="number"
                         id="editClassesPerWeek"
                         name="classesPerWeek"
                         min="0"
+                        step="1"
+                        placeholder="Enter classes per week"
                         required
                     >
+
                 </div>
 
+
+                <!-- Weeks Remaining -->
                 <div class="form-group">
-                    <label for="editWeeksRemaining">Weeks Remaining</label>
+
+                    <label for="editWeeksRemaining">
+                        Weeks Remaining
+                    </label>
+
                     <input
                         type="number"
                         id="editWeeksRemaining"
                         name="weeksRemaining"
                         min="0"
+                        step="1"
+                        placeholder="Enter remaining weeks"
                         required
                     >
+
                 </div>
 
+
+                <!-- Required Attendance -->
                 <div class="form-group">
+
                     <label for="editRequiredAttendance">
                         Required Attendance Percentage
                     </label>
@@ -101,18 +173,38 @@
                         min="0"
                         max="100"
                         step="0.1"
+                        value="75"
                         required
                     >
+
                 </div>
 
+
+                <!-- Form Buttons -->
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
                         Update Subject
                     </button>
 
-                    <a href="dashboard.html" class="btn btn-secondary">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        id="deleteSubjectBtn"
+                    >
+                        Delete Subject
+                    </button>
+
+                    <a
+                        href="subjects.html"
+                        class="btn btn-secondary"
+                    >
                         Cancel
                     </a>
+
                 </div>
 
             </form>
@@ -121,13 +213,18 @@
 
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 AttendEase. All Rights Reserved.</p>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AttendEase. All rights reserved.</p>
     </footer>
 
+
+    <!-- JavaScript files (functionality handled by your teammate) -->
     <script src="../js/attendance.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/ui.js"></script>
 
 </body>
+
 </html>

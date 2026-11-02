@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Details</title>
+    <title>AttendEase | Subject Details</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/animations.css">
@@ -19,7 +19,7 @@
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="add-subject.html">Add Subject</a></li>
+                <li><a href="subjects.html" class="active">Subjects</a></li>
             </ul>
         </nav>
     </header>
@@ -27,12 +27,16 @@
     <main class="details-container">
 
         <section class="details-header">
+
             <h1 id="detailSubjectName">Subject Name</h1>
+
             <span id="detailAttendanceStatus" class="attendance-status">
                 Safe
             </span>
+
         </section>
 
+        <!-- Attendance Overview -->
         <section class="attendance-overview">
 
             <article class="detail-card">
@@ -57,6 +61,7 @@
 
         </section>
 
+        <!-- Safe Leave Calculator -->
         <section class="safe-leave-section">
 
             <h2>Safe Leave Calculator</h2>
@@ -76,64 +81,58 @@
 
         </section>
 
+        <!-- Future Prediction -->
         <section class="future-attendance-section">
 
             <h2>Future Attendance Prediction</h2>
 
             <div class="prediction-card">
-                <p>Classes Per Week:
+
+                <p>
+                    Classes Per Week:
                     <strong id="detailClassesPerWeek">0</strong>
                 </p>
 
-                <p>Weeks Remaining:
+                <p>
+                    Weeks Remaining:
                     <strong id="detailWeeksRemaining">0</strong>
                 </p>
 
-                <p>Total Upcoming Classes:
+                <p>
+                    Total Upcoming Classes:
                     <strong id="detailUpcomingClasses">0</strong>
                 </p>
 
-                <p>Predicted Attendance:
+                <p>
+                    Predicted Attendance:
                     <strong id="detailFutureAttendance">0%</strong>
                 </p>
+
             </div>
 
         </section>
 
+        <!-- Attendance Simulator -->
         <section class="attendance-simulator">
 
             <h2>Attendance Simulator</h2>
 
             <p>Update your attendance for the next class.</p>
 
-            <div class="simulator-actions">
+            <button type="button" id="detailAttendBtn">
+                Attend Class (+)
+            </button>
 
-                <button
-                    type="button"
-                    id="detailAttendBtn"
-                    class="btn btn-success">
-                    Attend Class (+)
-                </button>
-
-                <button
-                    type="button"
-                    id="detailMissBtn"
-                    class="btn btn-danger">
-                    Miss Class (+)
-                </button>
-
-            </div>
+            <button type="button" id="detailMissBtn">
+                Miss Class (+)
+            </button>
 
         </section>
 
         <section class="details-actions">
 
-            <a href="edit-subject.html" class="btn btn-primary">
-                Edit Subject
-            </a>
-
-            <a href="dashboard.html" class="btn btn-secondary">
-                Back to Dashboard
+            <a href="subjects.html" class="btn btn-secondary">
+                Back to Subjects
             </a>
 
         </section>

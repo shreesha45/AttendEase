@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AttendEase | Subjects</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                AttendEase
+            </div>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="subjects.html" class="active">Subjects</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="subjects-page">
+
+        <!-- Page Heading -->
+        <section class="page-header">
+
+            <div>
+                <h1>My Subjects</h1>
+
+                <p>
+                    Manage your subjects and track your attendance.
+                </p>
+            </div>
+
+            <div class="subject-actions">
+
+                <a href="add-subject.html" class="btn btn-primary">
+                    + Add Subject
+                </a>
+
+                <a href="edit-subject.html" class="btn btn-edit">
+                    Edit Subject
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Search and Filter -->
+        <section class="subject-controls">
+
+            <input
+                type="text"
+                id="searchSubject"
+                placeholder="Search subjects..."
+            >
+
+            <select id="filterSubject">
+
+                <option value="all">All Subjects</option>
+
+                <option value="safe">Safe</option>
+
+                <option value="warning">Warning</option>
+
+                <option value="danger">At Risk</option>
+
+            </select>
+
+        </section>
+
+
+        <!-- Subjects Container -->
+        <section id="subjectsContainer" class="subjects-container">
+
+            <!-- Subject cards will be added here by JavaScript -->
+
+        </section>
+
+
+        <!-- Subject Card Template -->
+        <template id="subjectCardTemplate">
+
+            <div class="subject-card">
+
+                <div class="subject-card-header">
+
+                    <h2 class="subject-name">
+                        Subject Name
+                    </h2>
+
+                    <span class="attendance-status">
+                        Safe
+                    </span>
+
+                </div>
+
+
+                <!-- Attendance Information -->
+                <div class="attendance-info">
+
+                    <h3 class="attendance-percentage">
+                        75%
+                    </h3>
+
+                    <p>
+                        Attended:
+                        <span class="attended-count">0</span>
+                        /
+                        <span class="total-count">0</span>
+                        Classes
+                    </p>
+
+                    <p>
+                        Safe Leaves:
+                        <span class="safe-leaves">0</span>
+                    </p>
+
+                </div>
+
+
+                <!-- Attendance Progress -->
+                <div class="progress-container">
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Attendance Buttons -->
+                <div class="attendance-actions">
+
+                    <button type="button" class="attend-btn">
+                        + Attend Class
+                    </button>
+
+                    <button type="button" class="miss-btn">
+                        + Miss Class
+                    </button>
+
+                </div>
+
+
+                <!-- Subject Management -->
+                <div class="subject-management-actions">
+
+                    <a
+                        href="subject-details.html"
+                        class="btn btn-secondary details-btn"
+                    >
+                        View Details
+                    </a>
+
+                    <a
+                        href="edit-subject.html"
+                        class="btn btn-edit edit-btn"
+                    >
+                        Edit
+                    </a>
+
+                </div>
+
+            </div>
+
+        </template>
+
+
+        <!-- Notification -->
+        <div id="toastNotification" class="toast">
+
+            <p id="toastMessage"></p>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            &copy; 2026 AttendEase. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript will be connected by your teammate later -->
+    <script src="../js/attendance.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/ui.js"></script>
+
+</body>
+
+</html>

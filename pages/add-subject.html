@@ -1,166 +1,92 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Add Subject | AttendEase</title>
+    <title>AttendEase | Add Subject</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
-
 <body>
 
-    <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-
             <h2 class="logo">AttendEase</h2>
 
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="add-subject.html" class="active">Add Subject</a></li>
+                <li><a href="subjects.html" class="active">Subjects</a></li>
             </ul>
-
         </nav>
     </header>
 
-
-    <!-- Main Content -->
     <main class="form-page">
 
         <section class="form-container">
 
             <h1>Add New Subject</h1>
 
-            <p>Enter your subject details to start tracking attendance.</p>
+            <p>Enter the subject information below.</p>
 
-
-            <!-- Subject Form -->
             <form id="subjectForm">
 
-                <!-- Subject Name -->
                 <div class="form-group">
-
                     <label for="subjectName">Subject Name</label>
-
-                    <input
-                        type="text"
-                        id="subjectName"
+                    <input type="text" id="subjectName"
                         name="subjectName"
-                        placeholder="Enter subject name"
-                        required
-                    >
-
+                        placeholder="Enter subject name" required>
                 </div>
 
-
-                <!-- Total Classes -->
                 <div class="form-group">
-
                     <label for="totalClasses">Total Classes Conducted</label>
-
-                    <input
-                        type="number"
-                        id="totalClasses"
-                        name="totalClasses"
-                        min="0"
-                        step="1"
-                        placeholder="Enter total classes"
-                        required
-                    >
-
+                    <input type="number" id="totalClasses"
+                        name="totalClasses" min="0" step="1"
+                        placeholder="Enter total classes" required>
                 </div>
 
-
-                <!-- Attended Classes -->
                 <div class="form-group">
-
                     <label for="attendedClasses">Classes Attended</label>
-
-                    <input
-                        type="number"
-                        id="attendedClasses"
-                        name="attendedClasses"
-                        min="0"
-                        step="1"
-                        placeholder="Enter attended classes"
-                        required
-                    >
-
+                    <input type="number" id="attendedClasses"
+                        name="attendedClasses" min="0" step="1"
+                        placeholder="Enter attended classes" required>
                 </div>
 
-
-                <!-- Classes Per Week -->
                 <div class="form-group">
-
                     <label for="classesPerWeek">Classes Per Week</label>
-
-                    <input
-                        type="number"
-                        id="classesPerWeek"
-                        name="classesPerWeek"
-                        min="0"
-                        step="1"
-                        placeholder="Enter classes per week"
-                        required
-                    >
-
+                    <input type="number" id="classesPerWeek"
+                        name="classesPerWeek" min="0" step="1"
+                        placeholder="Enter classes per week" required>
                 </div>
 
-
-                <!-- Weeks Remaining -->
                 <div class="form-group">
-
                     <label for="weeksRemaining">Weeks Remaining</label>
-
-                    <input
-                        type="number"
-                        id="weeksRemaining"
-                        name="weeksRemaining"
-                        min="0"
-                        step="1"
-                        placeholder="Enter remaining weeks"
-                        required
-                    >
-
+                    <input type="number" id="weeksRemaining"
+                        name="weeksRemaining" min="0" step="1"
+                        placeholder="Enter remaining weeks" required>
                 </div>
 
-
-                <!-- Required Attendance -->
                 <div class="form-group">
-
                     <label for="requiredAttendance">
                         Required Attendance Percentage
                     </label>
 
-                    <input
-                        type="number"
-                        id="requiredAttendance"
+                    <input type="number" id="requiredAttendance"
                         name="requiredAttendance"
-                        min="0"
-                        max="100"
-                        step="0.1"
-                        value="75"
-                        required
-                    >
-
+                        min="0" max="100" step="0.1"
+                        value="75" required>
                 </div>
 
-
-                <!-- Form Buttons -->
                 <div class="form-actions">
 
                     <button type="submit" class="btn btn-primary">
                         Save Subject
                     </button>
 
-                    <a href="dashboard.html" class="btn btn-secondary">
+                    <a href="subjects.html" class="btn btn-secondary">
                         Cancel
                     </a>
 
@@ -172,16 +98,10 @@
 
     </main>
 
-
-    <!-- Footer -->
     <footer class="footer">
-
         <p>&copy; 2026 AttendEase. All Rights Reserved.</p>
-
     </footer>
 
-
-    <!-- JavaScript Files -->
     <script src="../js/attendance.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/ui.js"></script>
