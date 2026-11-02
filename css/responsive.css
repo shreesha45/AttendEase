@@ -1,108 +1,21 @@
-/* =================================
-   ATTENDEASE - RESPONSIVE DESIGN
-================================= */
-
-/* Tablets */
-@media (max-width: 900px) {
-  .statistics-section {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .features-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hero-section:after {
-    right: -100px;
-  }
+@media (max-width: 850px) {
+    .statistics-section, .attendance-overview { grid-template-columns: repeat(2,1fr); }
+    .features-container { grid-template-columns: repeat(2,1fr); }
+    .subjects-container { grid-template-columns: 1fr; }
+    .dashboard-container, .subjects-page, .details-container { width: 94%; }
 }
 
-/* Mobile devices */
-@media (max-width: 650px) {
-  .navbar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 9px;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    gap: 2px;
-  }
-
-  .nav-links a {
-    padding: 8px 10px;
-    font-size: .9rem;
-  }
-
-  .hero-section {
-    min-height: 370px;
-    margin-top: 22px;
-    padding: 40px 25px;
-  }
-
-  .hero-section:after {
-    width: 190px;
-    height: 190px;
-    right: -65px;
-    top: auto;
-    bottom: -75px;
-  }
-
-  .features-container,
-  .subjects-container,
-  .attendance-overview {
-    grid-template-columns: 1fr;
-  }
-
-  .section-heading,
-  .details-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .subject-card-header,
-  .attendance-info {
-    align-items: flex-start;
-  }
-
-  .subject-actions {
-    flex-wrap: wrap;
-  }
-}
-
-/* Small phones */
-@media (max-width: 420px) {
-  .statistics-section {
-    gap: 9px;
-  }
-
-  .stat-card {
-    padding: 14px;
-  }
-
-  .stat-card p,
-  .stat-card strong {
-    font-size: 1.4rem;
-  }
-
-  .form-actions,
-  .simulator-actions,
-  .details-actions {
-    flex-direction: column;
-  }
-
-  .form-actions .btn,
-  .simulator-actions .btn,
-  .details-actions .btn {
-    width: 100%;
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
+@media (max-width: 600px) {
+    .navbar { flex-direction: column; gap: 15px; }
+    .nav-links { gap: 17px; flex-wrap: wrap; justify-content: center; }
+    .hero-section { padding: 65px 7%; }
+    .hero-content h1 { font-size: 38px; }
+    .features-container, .statistics-section, .attendance-overview { grid-template-columns: 1fr; }
+    .page-header, .dashboard-header, .details-header { flex-direction: column; align-items: flex-start; }
+    .subject-controls { grid-template-columns: 1fr; }
+    .form-container { padding: 23px 17px; }
+    .form-actions, .subject-actions { flex-direction: column; width: 100%; }
+    .form-actions .btn, .subject-actions .btn { width: 100%; text-align: center; }
+    .attendance-actions, .subject-management-actions { flex-direction: column; }
+    .dashboard-overview, .dashboard-action { padding: 20px; }
 }
