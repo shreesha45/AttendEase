@@ -190,7 +190,7 @@ button, input, select { font: inherit; }
 .stat-card h3, .detail-card h3 { color: var(--muted); font-size: 14px; }
 .stat-card p, .detail-card p { font-size: 30px; font-weight: 800; color: var(--dark); }
 
-.dashboard-overview, .dashboard-action {
+.dashboard-overview {
     background: white;
     padding: 28px;
     border-radius: 18px;
@@ -198,10 +198,7 @@ button, input, select { font: inherit; }
     margin-bottom: 25px;
 }
 
-.dashboard-action p { color: var(--muted); margin: 10px 0 18px; }
-
 /* SUBJECTS */
-.subject-actions { display: flex; gap: 10px; }
 .subject-controls { display: grid; grid-template-columns: 1fr 220px; gap: 15px; margin-bottom: 25px; }
 .subjects-container { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; }
 

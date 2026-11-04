@@ -14,8 +14,8 @@
     .page-header, .dashboard-header, .details-header { flex-direction: column; align-items: flex-start; }
     .subject-controls { grid-template-columns: 1fr; }
     .form-container { padding: 23px 17px; }
-    .form-actions, .subject-actions { flex-direction: column; width: 100%; }
-    .form-actions .btn, .subject-actions .btn { width: 100%; text-align: center; }
+    .form-actions { flex-direction: column; width: 100%; }
+    .form-actions .btn { width: 100%; text-align: center; }
     .attendance-actions, .subject-management-actions { flex-direction: column; }
-    .dashboard-overview, .dashboard-action { padding: 20px; }
+    .dashboard-overview { padding: 20px; }
 }
