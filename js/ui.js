@@ -66,6 +66,16 @@ function showFormError(error) {
     window.alert(error.message);
 }
 
+function preventNumberInputScroll() {
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener("wheel", event => {
+            if (document.activeElement === input) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+    });
+}
+
 function createDetail(label, value) {
     const paragraph = document.createElement("p");
     paragraph.textContent = `${label}: `;
@@ -75,6 +85,26 @@ function createDetail(label, value) {
     paragraph.appendChild(valueElement);
 
     return paragraph;
+}
+
+function getStatusClass(status) {
+    return `status-${status.toLowerCase()}`;
+}
+
+function createProgressBar(attendance, status) {
+    const progressContainer = document.createElement("div");
+    progressContainer.className = "progress-container";
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar";
+
+    const progressFill = document.createElement("div");
+    progressFill.className = `progress-fill ${getStatusClass(status)}`;
+    progressFill.style.width = `${attendance}%`;
+    progressBar.appendChild(progressFill);
+    progressContainer.appendChild(progressBar);
+
+    return progressContainer;
 }
 
 function createSubjectCard(subject) {
@@ -103,7 +133,7 @@ function createSubjectCard(subject) {
     name.textContent = subject.name;
 
     const statusElement = document.createElement("span");
-    statusElement.className = "attendance-status";
+    statusElement.className = `attendance-status ${getStatusClass(status)}`;
     statusElement.textContent = status;
     header.append(name, statusElement);
 
@@ -123,6 +153,22 @@ function createSubjectCard(subject) {
         createDetail("Safe Leave Count", safeLeaveResult.safeLeaves)
     );
 
+    const attendanceActions = document.createElement("div");
+    attendanceActions.className = "attendance-actions";
+
+    const attendButton = document.createElement("button");
+    attendButton.type = "button";
+    attendButton.className = "attend-btn";
+    attendButton.dataset.subjectId = subject.id;
+    attendButton.textContent = "+ Attend Class";
+
+    const missButton = document.createElement("button");
+    missButton.type = "button";
+    missButton.className = "miss-btn";
+    missButton.dataset.subjectId = subject.id;
+    missButton.textContent = "+ Miss Class";
+    attendanceActions.append(attendButton, missButton);
+
     const actions = document.createElement("div");
     actions.className = "subject-management-actions";
 
@@ -138,7 +184,13 @@ function createSubjectCard(subject) {
     deleteButton.textContent = "Delete";
 
     actions.append(editButton, deleteButton);
-    card.append(header, info, actions);
+    card.append(
+        header,
+        info,
+        createProgressBar(attendance, status),
+        attendanceActions,
+        actions
+    );
 
     return card;
 }
@@ -151,25 +203,34 @@ export function renderSubjects() {
 
     container.replaceChildren();
     const subjects = loadSubjects();
+    const searchInput = getElement("searchSubject");
+    const filterSelect = getElement("filterSubject");
+    const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : "";
+    const selectedFilter = filterSelect ? filterSelect.value : "all";
+    const filteredSubjects = subjects.filter(subject => {
+        const attendance = calculateAttendance(
+            subject.attendedClasses,
+            subject.totalClasses
+        );
+        const status = getAttendanceStatus(attendance, subject.requiredAttendance);
+        const matchesSearch = subject.name.toLowerCase().includes(searchTerm);
+        const matchesFilter = selectedFilter === "all"
+            || (selectedFilter === "danger" && status === "Critical")
+            || status.toLowerCase() === selectedFilter;
 
-    if (subjects.length === 0) {
-        const emptyState = document.createElement("div");
-        emptyState.className = "empty-state";
+        return matchesSearch && matchesFilter;
+    });
 
+    if (filteredSubjects.length === 0) {
         const message = document.createElement("p");
-        message.textContent = "No subjects added yet.";
-
-        const addButton = document.createElement("a");
-        addButton.className = "btn btn-primary";
-        addButton.href = "add-subject.html";
-        addButton.textContent = "Add your first subject";
-
-        emptyState.append(message, addButton);
-        container.appendChild(emptyState);
+        message.textContent = "No matching subjects found.";
+        container.appendChild(message);
         return;
     }
 
-    subjects.forEach(subject => container.appendChild(createSubjectCard(subject)));
+    filteredSubjects.forEach(subject => {
+        container.appendChild(createSubjectCard(subject));
+    });
 }
 
 function createDashboardSubject(subject) {
@@ -197,7 +258,7 @@ function createDashboardSubject(subject) {
     name.textContent = subject.name;
 
     const statusElement = document.createElement("span");
-    statusElement.className = "attendance-status";
+    statusElement.className = `attendance-status ${getStatusClass(status)}`;
     statusElement.textContent = status;
     header.append(name, statusElement);
 
@@ -226,12 +287,16 @@ function createDashboardSubject(subject) {
     editButton.textContent = "Edit";
 
     actions.appendChild(editButton);
-    summary.append(header, details, actions);
+    summary.append(header, details, createProgressBar(attendance, status), actions);
 
     return summary;
 }
 
 function renderDashboardStats(subjects) {
+    if (!getElement("totalSubjects")) {
+        return;
+    }
+
     const counts = subjects.reduce((subjectCounts, subject) => {
         const attendance = calculateAttendance(
             subject.attendedClasses,
@@ -283,8 +348,33 @@ function setupSubjectsPage() {
         return;
     }
 
+    const searchInput = getElement("searchSubject");
+    const filterSelect = getElement("filterSubject");
+    searchInput.addEventListener("input", renderSubjects);
+    filterSelect.addEventListener("change", renderSubjects);
     renderSubjects();
     container.addEventListener("click", event => {
+        const attendanceButton = event.target.closest(".attend-btn, .miss-btn");
+        if (attendanceButton) {
+            const subjectId = attendanceButton.dataset.subjectId;
+            const subject = loadSubjects().find(item => item.id === subjectId);
+            if (!subject) {
+                return;
+            }
+
+            const attended = attendanceButton.classList.contains("attend-btn");
+            const updatedSubject = {
+                ...subject,
+                totalClasses: subject.totalClasses + 1,
+                attendedClasses: subject.attendedClasses + (attended ? 1 : 0)
+            };
+
+            updateSubject(updatedSubject);
+            renderDashboardStats(loadSubjects());
+            refreshSubjectCard(subjectId);
+            return;
+        }
+
         const deleteButton = event.target.closest(".delete-btn");
         if (!deleteButton) {
             return;
@@ -295,6 +385,35 @@ function setupSubjectsPage() {
             renderSubjects();
         }
     });
+}
+
+function refreshSubjectCard(subjectId) {
+    const card = document.querySelector(`[data-subject-id="${CSS.escape(subjectId)}"]`);
+    const subject = loadSubjects().find(item => item.id === subjectId);
+
+    if (!subject || !card) {
+        renderSubjects();
+        return;
+    }
+
+    const searchInput = getElement("searchSubject");
+    const filterSelect = getElement("filterSubject");
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const status = getAttendanceStatus(
+        calculateAttendance(subject.attendedClasses, subject.totalClasses),
+        subject.requiredAttendance
+    );
+    const matchesSearch = subject.name.toLowerCase().includes(searchTerm);
+    const matchesFilter = filterSelect.value === "all"
+        || (filterSelect.value === "danger" && status === "Critical")
+        || status.toLowerCase() === filterSelect.value;
+
+    if (!matchesSearch || !matchesFilter) {
+        renderSubjects();
+        return;
+    }
+
+    card.replaceWith(createSubjectCard(subject));
 }
 
 function setupAddForm() {
@@ -366,4 +485,5 @@ function setupEditForm() {
 setupSubjectsPage();
 setupAddForm();
 setupEditForm();
+preventNumberInputScroll();
 renderDashboardSubjects();

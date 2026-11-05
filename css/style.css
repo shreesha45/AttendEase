@@ -223,12 +223,31 @@ button, input, select { font: inherit; }
     font-weight: 800;
 }
 
+.attendance-status.status-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.attendance-status.status-critical {
+    background: #f8d7da;
+    color: #842029;
+}
+
 .attendance-percentage { color: var(--purple); font-size: 34px; }
 .attendance-info p { color: var(--muted); }
 .attendance-info span { color: var(--dark); font-weight: 700; }
 
 .progress-bar { height: 9px; background: #eceef5; border-radius: 20px; overflow: hidden; margin: 18px 0; }
-.progress-fill { height: 100%; width: 0; background: linear-gradient(90deg,var(--purple),var(--pink)); border-radius: 20px; }
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: #4caf50;
+    border-radius: 20px;
+    transition: width .3s ease, background-color .3s ease;
+}
+
+.progress-fill.status-warning { background: #f59e0b; }
+.progress-fill.status-critical { background: #dc3545; }
 
 .attendance-actions, .subject-management-actions { display: flex; gap: 10px; margin-top: 15px; }
 .attendance-actions button { flex: 1; padding: 10px; border: 0; border-radius: 9px; background: #e5f8d7; color: #39731c; cursor: pointer; font-weight: 700; }
